@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react"
 
 const Body = () => {
-    const [map, setMap] = useState(null)
+    const [recipe, setRecipe] = useState([])
+    const [ingredient, setIngredient] = useState("chicken_breast")
     const [isLoaded, setIsLoaded] = useState(false);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetch(`https://www.google.com/maps/embed/v1/place?key=${import.meta.env.VITE_API_KEY}&q=Space+Needle,Seattle+WA`)
+        fetch(`https://www.themealdb.com/api/json/v1/${import.meta.env.VITE_API_KEY}/filter.php?i=${ingredient}`)
             .then(response => response.json())
             .then((jsonifiedResponse) => {
-                setMap(jsonifiedResponse.results)
+                setRecipe(jsonifiedResponse.meals)
                 setIsLoaded(true)
+                console.log(recipe)
             })
             .catch((error) => {
                 setError(error)
@@ -18,18 +20,16 @@ const Body = () => {
             });
     }, [])
 
-    return (
-        <iframe
-            title="Google Maps"
-            width="450"
-            height="250"
-            frameBorder="0"
-            style={{ border: 0 }}
-            referrerPolicy="no-referrer-when-downgrade"
-            src={`https://www.google.com/maps/embed/v1/MAP_MODE?key=${map}&q=Space+Needle,Seattle+WA`}
-            allowFullScreen
-        ></iframe>
-    )
+    if (!isLoaded) {
+        return <h1>...Loading...</h1>;
+    } else {
+        return (
+            <div>
+                {recipe.map((meal) => (
+                    <p key={meal.idMeal}>{meal.strMeal}</p>
+                ))}
+            </div>
+        )
+    }
 }
-
 export default Body;
