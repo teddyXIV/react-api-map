@@ -1,0 +1,11 @@
+.recipes-container {
+    float: left;
+    margin: auto;
+    width: 40%;
+}
+
+.saved-container {
+    float: right;
+    margin: 5%;
+    width: 40%;
+}

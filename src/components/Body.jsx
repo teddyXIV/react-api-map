@@ -6,6 +6,7 @@ import { selectRecipes, getRecipes } from "../redux/recipeSlice";
 import Recipes from "./Recipes";
 import Form from "./Form";
 import SavedRecipesList from "./SavedRecipesList";
+import './Body.css';
 
 const Body = () => {
     const [isLoaded, setIsLoaded] = useState(false);
@@ -36,8 +37,12 @@ const Body = () => {
         return (
             <>
                 <Form />
-                <Recipes />
-                <SavedRecipesList />
+                <div className="recipes-container">
+                    <Recipes />
+                </div>
+                <div className="saved-container">
+                    <SavedRecipesList />
+                </div>
             </>
         )
     } else {
