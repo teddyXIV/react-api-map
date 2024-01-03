@@ -1,25 +1,27 @@
 import { useEffect, useState } from "react"
 import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectIngredient, changeIngredient } from "../redux/ingredientSlice";
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
+import { selectIngredient } from "../redux/ingredientSlice";
+import { selectRecipes, getRecipes } from "../redux/recipeSlice";
+import Recipes from "./Recipes";
+import Form from "./Form";
+import SavedRecipesList from "./SavedRecipesList";
 
 const Body = () => {
-    const [recipe, setRecipe] = useState([])
-    // const [ingredient, setIngredient] = useState("")
     const [isLoaded, setIsLoaded] = useState(false);
     const [error, setError] = useState(null);
-    const [savedRecipes, setSavedRecipes] = useState([])
 
-    const ingredient = useSelector(selectIngredient)
+    const ingredient = useSelector(selectIngredient);
+    const recipes = useSelector(selectRecipes);
+    const recipesList = recipes.recipes;
+
     const dispatch = useDispatch()
 
     useEffect(() => {
         fetch(`https://www.themealdb.com/api/json/v1/${import.meta.env.VITE_API_KEY}/filter.php?i=${ingredient}`)
             .then(response => response.json())
             .then((jsonifiedResponse) => {
-                setRecipe(jsonifiedResponse.meals)
+                dispatch(getRecipes(jsonifiedResponse.meals))
                 setIsLoaded(true)
             })
             .catch((error) => {
@@ -30,60 +32,19 @@ const Body = () => {
 
     if (!isLoaded) {
         return <h1>...Loading...</h1>;
-    } else if (recipe && ingredient) {
+    } else if (recipesList && ingredient) {
         return (
             <>
-                <form onSubmit={(e) => {
-                    e.preventDefault();
-                }}>
-                    <label>What do you got? </label>
-                    <input
-                        id="filled-search"
-                        label="Search field"
-                        type="search"
-                        variant="filled"
-                        value={ingredient}
-                        onChange={e => {
-                            dispatch(changeIngredient(e.target.value))
-                        }} />
-                </form>
-                <div>
-                    < hr />
-                    {recipe.map((meal) => (
-                        <>
-                            <div key={meal.idMeal}>
-                                <h4>{meal.strMeal}</h4>
-                                <button onClick={() => setSavedRecipes(savedRecipes => [...savedRecipes, meal.strMeal])}>Save recipe</button>
-                                < hr />
-                            </div>
-                        </>
-                    ))}
-                </div>
-                <div>
-                    {savedRecipes.map((meal) => (
-                        <p key={meal + "1"}>{meal}</p>
-                    ))}
-                </div>
+                <Form />
+                <Recipes />
+                <SavedRecipesList />
             </>
         )
     } else {
         return (
             <>
-                <form>
-                    <label>Ingredient: </label>
-                    <input
-                        type="text"
-                        id="ingredient"
-                        value={ingredient}
-                        onChange={e => {
-                            dispatch(changeIngredient(e.target.value))
-                        }} />
-                </form>
-                <div>
-                    {savedRecipes.map((meal) => (
-                        <p key={meal + "1"}>{meal}</p>
-                    ))}
-                </div>
+                <Form />
+                <SavedRecipesList />
             </>
         )
     }
