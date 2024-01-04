@@ -5,6 +5,7 @@ import { selectIngredient } from "../redux/ingredientSlice";
 import { selectRecipes, getRecipes } from "../redux/recipeSlice";
 import Recipes from "./Recipes";
 import Form from "./Form";
+import Suggestion from "./Suggestion";
 import SavedRecipesList from "./SavedRecipesList";
 import './Body.css';
 
@@ -36,20 +37,27 @@ const Body = () => {
     } else if (recipesList && ingredient) {
         return (
             <>
-                <Form />
+                <div className="form">
+                    <Form />
+                </div>
                 <div className="recipes-container">
                     <Recipes />
                 </div>
                 <div className="saved-container">
                     <SavedRecipesList />
                 </div>
+                {/* <Suggestion /> */}
             </>
         )
     } else {
         return (
             <>
-                <Form />
-                <SavedRecipesList />
+                <div className="form">
+                    <Form />
+                </div>
+                <div className="saved-container">
+                    <SavedRecipesList />
+                </div>
             </>
         )
     }

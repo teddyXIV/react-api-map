@@ -12,6 +12,7 @@ const Form = () => {
         }}>
             <label>What chu got in dat fridge? </label>
             <br />
+            <br />
             <input
                 id="filled-search"
                 label="Search field"

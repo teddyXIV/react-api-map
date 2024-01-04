@@ -1,11 +1,14 @@
-.recipe-card {
+.recipes-container {
     display: flex;
     flex-wrap: wrap;
     text-align: center;
     margin: auto;
-    margin-top: 20px;
 }
 
-.recipe-card:hover {
-    transform: scale(1.02);
+.recipe-card {
+    margin: auto;
+    width: 150px;
+    height: 200px;
+    align-items: center;
+    margin-top: 20px;
 }

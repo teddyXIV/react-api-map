@@ -23,8 +23,7 @@ const Recipes = () => {
 
     return (
         <>
-            <div>
-                < hr />
+            <div className="recipes-container">
                 {recipesList.map((meal) => (
                     <Card className="recipe-card" sx={{ maxWidth: 200, maxHeight: 200 }} onClick={() => { saveInfo(meal) }}>
                         <CardActionArea>
@@ -35,7 +34,7 @@ const Recipes = () => {
                                 alt={meal.strMeal}
                             />
                             <CardContent>
-                                <Typography gutterBottom variant="h5" component="div">
+                                <Typography gutterBottom variant="h6" component="div">
                                     {meal.strMeal}
                                 </Typography>
                             </CardContent>
