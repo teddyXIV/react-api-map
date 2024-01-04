@@ -41,7 +41,9 @@ const Body = () => {
                     <Form />
                 </div>
                 <div className="recipe-content">
-                    <div className="spacer"></div>
+                    <div className="spacer">
+                        <Suggestion />
+                    </div>
                     <div className="recipes-container">
                         <Recipes />
                     </div>
@@ -49,7 +51,6 @@ const Body = () => {
                         <SavedRecipesList />
                     </div>
                 </div>
-                {/* <Suggestion /> */}
             </>
         )
     } else {

@@ -49,7 +49,10 @@ const Suggestion = () => {
                             <Divider variant="inset" component="li" />
                             <button onClick={() => { setSelectedRandom(meal.strMeal) }}>View details</button>
                             {selectedRandom === meal.strMeal && (
-                                <p key={meal.idMeal + "r"}>{meal.strInstructions}</p>
+                                <>
+                                    <p key={meal.idMeal + "r"}>{meal.strInstructions}</p>
+                                    <button>hide</button>
+                                </>
                             )}
                         </React.Fragment>
                     )
