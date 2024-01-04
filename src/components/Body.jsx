@@ -40,11 +40,14 @@ const Body = () => {
                 <div className="form">
                     <Form />
                 </div>
-                <div className="recipes-container">
-                    <Recipes />
-                </div>
-                <div className="saved-container">
-                    <SavedRecipesList />
+                <div className="recipe-content">
+                    <div className="spacer"></div>
+                    <div className="recipes-container">
+                        <Recipes />
+                    </div>
+                    <div className="saved-container">
+                        <SavedRecipesList />
+                    </div>
                 </div>
                 {/* <Suggestion /> */}
             </>

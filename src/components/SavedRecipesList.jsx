@@ -10,7 +10,7 @@ import { selectRecipes } from "../redux/recipeSlice";
 import { useState, useEffect } from 'react';
 
 const SavedRecipesList = () => {
-    const [selectedRecipe, setSelectedRecipe] = useState("Arrabiata");
+    const [selectedRecipe, setSelectedRecipe] = useState("");
     const [recipeInfo, setRecipeInfo] = useState("")
     const [error, setError] = useState(null);
     const recipes = useSelector(selectRecipes);

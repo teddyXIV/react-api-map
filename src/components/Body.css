@@ -1,16 +1,28 @@
 .recipes-container {
-    float: left;
-    margin: auto;
+    /* float: top; */
+    /* margin: auto; */
     width: 70%;
+    margin-top: 0;
+}
+
+.recipe-content {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
 }
 
 .saved-container {
     float: right;
-    margin: auto;
-    width: 20%;
+    /* margin: auto; */
+    width: 15%;
 }
 
 .form {
     width: 100%;
     padding-bottom: 50px;
+}
+
+.spacer {
+    width: 15%;
+    float: left;
 }

@@ -11,6 +11,7 @@ const Suggestion = () => {
     const [error, setError] = useState(null);
     const [counter, setCounter] = useState(10);
     const [randomRecipes, setRandomRecipes] = useState([])
+    const [selectedRandom, setSelectedRandom] = useState("")
 
     useEffect(() => {
         if (counter > 0) {
@@ -46,9 +47,9 @@ const Suggestion = () => {
                                 />
                             </ListItem>
                             <Divider variant="inset" component="li" />
-                            <button onClick={() => { setSelectedRecipe(meal.strMeal) }}>View details</button>
-                            {selectedRecipe === meal.strMeal && recipeInfo.meals && (
-                                <p key={meal.idMeal}>{recipeInfo.meals[0].strInstructions}</p>
+                            <button onClick={() => { setSelectedRandom(meal.strMeal) }}>View details</button>
+                            {selectedRandom === meal.strMeal && (
+                                <p key={meal.idMeal + "r"}>{meal.strInstructions}</p>
                             )}
                         </React.Fragment>
                     )
