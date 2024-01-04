@@ -10,7 +10,8 @@ const Form = () => {
         <form onSubmit={(e) => {
             e.preventDefault();
         }}>
-            <label>What you got in the fridge? </label>
+            <label>What chu got in dat fridge? </label>
+            <br />
             <input
                 id="filled-search"
                 label="Search field"

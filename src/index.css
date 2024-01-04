@@ -40,7 +40,7 @@ button {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
-  font-size: 1em;
+  font-size: 0.5em;
   font-weight: 500;
   font-family: inherit;
   background-color: #1a1a1a;
@@ -49,7 +49,7 @@ button {
 }
 
 button:hover {
-  border-color: #646cff;
+  border-color: rgba(239, 28, 67, 0.912);
 }
 
 button:focus,

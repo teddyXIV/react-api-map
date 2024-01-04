@@ -5,32 +5,32 @@ import Divider from '@mui/material/Divider';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
-import Typography from '@mui/material/Typography';
 import { useSelector } from 'react-redux';
 import { selectRecipes } from "../redux/recipeSlice";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const SavedRecipesList = () => {
-    const [recipeInfo, setRecipeInfo] = useState([])
+    const [selectedRecipe, setSelectedRecipe] = useState("Arrabiata");
+    const [recipeInfo, setRecipeInfo] = useState("")
+    const [error, setError] = useState(null);
     const recipes = useSelector(selectRecipes);
     const savedList = recipes.savedRecipes;
 
-    const recipeDetails = (mealId) => {
-        useEffect(() => {
-            fetch(`https://www.themealdb.com/api/json/v1/${import.meta.env.VITE_API_KEY}/lookup.php?i=${mealId}`)
-                .then(response => response.json())
-                .then((jsonifiedResponse) => {
-                    setRecipeInfo(jsonifiedResponse.strInstructions)
-                })
-                .catch((error) => {
-                    setError(error)
-                });
-        }, [])
-    }
+
+    useEffect(() => {
+        fetch(`https://www.themealdb.com/api/json/v1/${import.meta.env.VITE_API_KEY}/search.php?s=${selectedRecipe}`)
+            .then(response => response.json())
+            .then((jsonifiedResponse) => {
+                setRecipeInfo(jsonifiedResponse)
+            })
+            .catch((error) => {
+                setError(error)
+            });
+    }, [selectedRecipe])
 
     return (
 
-        <List sx={{ width: '100%', maxWidth: 600 }}>
+        <List sx={{ width: '100%' }}>
             {savedList.map((meal) => {
                 return (
                     <>
@@ -44,6 +44,10 @@ const SavedRecipesList = () => {
                             />
                         </ListItem>
                         <Divider variant="inset" component="li" />
+                        <button onClick={() => { setSelectedRecipe(meal.strMeal) }}>View details</button>
+                        {selectedRecipe === meal.strMeal && recipeInfo.meals && (
+                            <p>{recipeInfo.meals[0].strInstructions}</p>
+                        )}
                     </>
                 )
             })}

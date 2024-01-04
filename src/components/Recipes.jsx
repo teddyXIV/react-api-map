@@ -1,6 +1,7 @@
 import { selectRecipes, saveRecipe } from "../redux/recipeSlice";
 import { getRecipeInfo } from "../redux/recipeInfoSlice";
 import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from 'react';
 
 const Recipes = () => {
     const recipes = useSelector(selectRecipes);
@@ -13,16 +14,16 @@ const Recipes = () => {
             dispatch(saveRecipe(meal))
         }
 
-        useEffect(() => {
-            fetch(`https://www.themealdb.com/api/json/v1/${import.meta.env.VITE_API_KEY}/lookup.php?i=${meal.idMeal}`)
-                .then(response => response.json())
-                .then((jsonifiedResponse) => {
-                    dispatch(getRecipeInfo(jsonifiedResponse.meals))
-                })
-                .catch((error) => {
-                    setError(error)
-                });
-        }, [])
+        // useEffect(() => {
+        //     fetch(`https://www.themealdb.com/api/json/v1/${import.meta.env.VITE_API_KEY}/lookup.php?i=${meal.idMeal}`)
+        //         .then(response => response.json())
+        //         .then((jsonifiedResponse) => {
+        //             dispatch(getRecipeInfo(jsonifiedResponse.meals))
+        //         })
+        //         .catch((error) => {
+        //             setError(error)
+        //         });
+        // }, [])
 
     }
 
@@ -33,7 +34,7 @@ const Recipes = () => {
                 {recipesList.map((meal) => (
                     <div key={meal.idMeal}>
                         <h4>{meal.strMeal}</h4>
-                        <button onClick={() => { saveAndGetInfo(meal) }}>Save recipe</button>
+                        <button onClick={() => { saveAndGetInfo(meal) }}>SAVE DIS ONE!</button>
                         < hr />
                     </div>
                 ))}

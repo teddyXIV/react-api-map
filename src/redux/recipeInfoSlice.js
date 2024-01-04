@@ -16,6 +16,6 @@ export const recipeInfoSlice = createSlice({
 
 export default recipeInfoSlice.reducer;
 
-export const { getRecipeInfo } = recipesSlice.actions;
+export const { getRecipeInfo } = recipeInfoSlice.actions;
 
 export const selectRecipeInfo = (state) => state.recipeInfo;
