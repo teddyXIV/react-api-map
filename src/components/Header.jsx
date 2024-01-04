@@ -1,5 +1,6 @@
 import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
 import { pink } from '@mui/material/colors';
+import './Header.css';
 
 const Header = () => {
     return (

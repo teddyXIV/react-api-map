@@ -16,7 +16,7 @@ const Form = () => {
                 id="filled-search"
                 label="Search field"
                 type="search"
-                variant="filled"
+                variant="Outlined"
                 value={ingredient}
                 onChange={e => {
                     dispatch(changeIngredient(e.target.value))
