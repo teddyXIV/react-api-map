@@ -13,6 +13,7 @@ const SavedRecipesList = () => {
     const [selectedRecipe, setSelectedRecipe] = useState("");
     const [recipeInfo, setRecipeInfo] = useState("")
     const [error, setError] = useState(null);
+    const [hide, setHide] = useState(true)
     const recipes = useSelector(selectRecipes);
     const savedList = recipes.savedRecipes;
 
@@ -28,9 +29,14 @@ const SavedRecipesList = () => {
             });
     }, [selectedRecipe])
 
+    const changeSelectedRecipeandHide = (meal) => {
+        setSelectedRecipe(meal);
+        setHide(true);
+    }
+
     return (
         <>
-            <h3>Saved</h3>
+            {/* <h3>Saved</h3> */}
             <List sx={{ width: '100%' }}>
                 {savedList.map((meal) => {
                     return (
@@ -45,11 +51,11 @@ const SavedRecipesList = () => {
                                 />
                             </ListItem>
                             <Divider variant="inset" component="li" />
-                            <button onClick={() => { setSelectedRecipe(meal.strMeal) }}>View details</button>
-                            {selectedRecipe === meal.strMeal && recipeInfo.meals && (
+                            <button onClick={() => { changeSelectedRecipeandHide(meal.strMeal) }}>View details</button>
+                            {selectedRecipe === meal.strMeal && hide === true && recipeInfo.meals && (
                                 <>
                                     <p key={meal.idMeal}>{recipeInfo.meals[0].strInstructions}</p>
-                                    <button>hide</button>
+                                    <button onClick={() => setHide(false)}>hide</button>
                                 </>
                             )}
                         </React.Fragment>
