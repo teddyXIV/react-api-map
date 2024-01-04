@@ -33,7 +33,7 @@ const SavedRecipesList = () => {
         <List sx={{ width: '100%' }}>
             {savedList.map((meal) => {
                 return (
-                    <>
+                    <React.Fragment key={meal.idMeal}>
                         <ListItem alignItems="flex-start">
                             <ListItemAvatar>
                                 <Avatar alt={meal.strMeal} src={meal.strMealThumb} />
@@ -46,9 +46,9 @@ const SavedRecipesList = () => {
                         <Divider variant="inset" component="li" />
                         <button onClick={() => { setSelectedRecipe(meal.strMeal) }}>View details</button>
                         {selectedRecipe === meal.strMeal && recipeInfo.meals && (
-                            <p>{recipeInfo.meals[0].strInstructions}</p>
+                            <p key={meal.idMeal}>{recipeInfo.meals[0].strInstructions}</p>
                         )}
-                    </>
+                    </React.Fragment>
                 )
             })}
 
